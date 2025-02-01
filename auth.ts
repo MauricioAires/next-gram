@@ -17,16 +17,36 @@ const config: NextAuthConfig = {
   },
   providers: [google],
   callbacks: {
-    authorized({ request, auth }) {
-      const { pathname } = request.nextUrl;
+   session({ session, token}) {
+    if(token.sub) session.user.userId = token.sub;
 
-      if (pathname === "/middleware") {
-        return !!auth;
-      }
-
-      return true;
-    },
+    return session;
+   }
   },
+
+  pages: {
+    signIn: "/signIn"
+  }
 } satisfies NextAuthConfig;
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);
+
+// Providers => minha página
+
+interface ProviderWithId  {
+  id: string;
+  name: string;
+}
+
+// Mapear os providers
+// Podemos agora acessar os providers na nossa página de login
+// We can access the providers in us login page
+export const providerMap = config.providers.map(provider => {
+
+  const typeProvider = provider as unknown as ProviderWithId
+
+  return {
+    id: typeProvider.id,
+    name: typeProvider.name
+  }
+})

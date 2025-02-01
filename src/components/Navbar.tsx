@@ -2,6 +2,8 @@ import { getUserByEmail } from "@/actions";
 import { auth, signIn, signOut } from "auth";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "./Button";
+import { ButtonLink } from "./ButtonLink";
 
 export async function Navbar() {
   const session = await auth();
@@ -31,28 +33,36 @@ export async function Navbar() {
                 height={40}
               />
             )}
+
+            <Link
+              href={`/profile`}
+              className="text-white font-medium hover:text-zinc-200"
+            >
+              Perfil
+            </Link>
+            <Link
+              href={`/post/new`}
+              className="text-white font-medium hover:text-zinc-200"
+            >
+              Criar postagem
+            </Link>
+            <Link
+              href={`/my-posts`}
+              className="text-white font-medium hover:text-zinc-200"
+            >
+              Minhas postagens
+            </Link>
             <form
               action={async () => {
                 "use server";
                 await signOut();
               }}
             >
-              <button
-                type="submit"
-                className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded"
-              >
-                Sign Out
-              </button>
+              <Button type="submit" text="Sair" danger />
             </form>
           </div>
         ) : (
-          <Link
-            href="signIn"
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-          >
-            Sign In
-          </Link>
+          <ButtonLink text="Entrar" url="signIn" />
         )}
       </div>
     </nav>

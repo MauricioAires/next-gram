@@ -29,19 +29,13 @@ export async function Navbar() {
             </form>
           </div>
         ) : (
-          <form
-            action={async () => {
-              "use server";
-              await signIn();
-            }}
+          <Link
+            href="signIn"
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
           >
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-            >
-              Sign In
-            </button>
-          </form>
+            Sign In
+          </Link>
         )}
       </div>
     </nav>

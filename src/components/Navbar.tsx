@@ -1,5 +1,6 @@
 import { getUserByEmail } from "@/actions";
 import { auth, signIn, signOut } from "auth";
+import Image from "next/image";
 import Link from "next/link";
 
 export async function Navbar() {
@@ -19,7 +20,17 @@ export async function Navbar() {
       <div>
         {user ? (
           <div className="flex gap-4 items-center">
-            <p>{user.name}</p>
+            <p className="text-white font-medium">{user.name}</p>
+
+            {user.image && (
+              <Image
+                src={user.image}
+                alt={`Perfil de:${user.name}`}
+                className="rounded-full "
+                width={40}
+                height={40}
+              />
+            )}
             <form
               action={async () => {
                 "use server";

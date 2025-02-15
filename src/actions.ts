@@ -19,3 +19,18 @@ export async function getUserByEmail(
 
   return user;
 }
+
+export type FormState = {
+  message: string;
+  type: string;
+};
+
+export async function updateUserProfile(
+  formState: FormState,
+  formData: FormData
+): Promise<FormState> {
+  return {
+    message: "Profile updated successfully!",
+    type: "success",
+  };
+}

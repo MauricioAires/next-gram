@@ -47,7 +47,7 @@ export function ImagePreview() {
       />
 
       {selectedImage && (
-        <input type="hidden" name="imageFile" value={selectedImage.name} />
+        <input type="hidden" name="image" value={selectedImage.name} />
       )}
     </div>
   );

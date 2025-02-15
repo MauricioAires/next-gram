@@ -6,6 +6,7 @@ import { Label } from "./Label";
 import { Button } from "./Button";
 import { ImagePreview } from "./ImagePreview";
 import { useActionState } from "react";
+import { FlashMessage } from "./FlashMessage";
 
 export type ProfileFormProps = {
   user: User;
@@ -18,9 +19,15 @@ export function ProfilemForm({ user }: ProfileFormProps) {
 
   return (
     <div>
-      {formState.message && <p>Algum texto</p>}
+      {formState.message && (
+        <FlashMessage message={formState.message} type={formState.type} />
+      )}
 
-      <form action="" className="flex flex-col gap-4">
+      <form
+        action={formAction}
+        encType="multipart/form-data"
+        className="flex flex-col gap-4"
+      >
         <input type="hidden" name="id" value={user.id} />
 
         <div>

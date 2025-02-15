@@ -46,3 +46,8 @@ next-env.d.ts
 /prisma/.cache/
 #/prisma/migrations/
 /prisma/dev.db-journal
+
+# Uploads
+
+/public/uploads/*
+!public/uploads/.gitkeep
